@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Todo List</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            var count = 0;
+            $(".add").click(function(){
+                var inputVal = $(".inputTxt").val();
+                if (inputVal != '') {
+                    count ++;
+                    $(".todo-list").append('<li><div class="list-materials"><input type="checkbox" id="checked-'+count+'"><label for="checked-'+count+'"></label><span>'+inputVal+'</span></div><span class="removed"><i class="material-icons">delete</i></span></li>');
+                }
+                $(".inputTxt").val('');
+            });
+
+            $(document).on('change', 'input[type="checkbox"]', function(){
+                if($(this).is(':checked')) {
+                    $(this).closest("li").children(".removed").addClass("active");
+                } else {
+                    $(this).closest("li").children(".removed").addClass("active");
+                }
+            });
+
+            $(document).on('click', '.removed', function(){
+                $(this).parent().remove();
+            });
+        });
+    </script>
+
+</head>
+
+    <body>
+        <div class="container">
+            <div class="input">
+                <input type="text" class="inputTxt" placeholder="New Task">
+                <div class="add"><i class="material-icons">add</i></div>
+            </div>
+            <ul class="todo-list">
+            </ul>
+        </div>
+
+    </body>
+
+</html>
